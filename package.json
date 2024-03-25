@@ -1,0 +1,43 @@
+{
+  "name": "meigetsuidlib",
+  "version": "1.0.0",
+  "description": "Meigetsu ID Request Wrapper Library",
+  "type": "module",
+  "main": "dist/main/index.js",
+  "types": "dist/@types/index.d.ts",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "prettier": "prettier --write .",
+    "eslint": "eslint --cache --ext .js,.ts .",
+    "eslint:fix": "eslint --cache --ext .js,.ts . --fix",
+    "pretest": "tsc",
+    "test": "dotenv -e .env -- ava --verbose dist/test",
+    "porttest": "run-script-os",
+    "posttest:default": "rm -rf dist/",
+    "posttest:win32": "rmdir /s /q dist",
+    "prepack": "tsc",
+    "postpack": "run-script-os",
+    "postpack:default": "rm -rf dist/",
+    "postpack:win32": "rmdir /s /q dist",
+    "build": "tsc"
+  },
+  "author": "Meigetsu",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "ava": "^6.1.2",
+    "c8": "^9.1.0",
+    "dotenv-cli": "^7.4.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-ava": "^14.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^3.2.5",
+    "run-script-os": "^1.1.6",
+    "typescript": "^5.4.2"
+  }
+}
