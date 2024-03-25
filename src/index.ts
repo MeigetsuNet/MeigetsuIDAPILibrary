@@ -142,7 +142,7 @@ export default class MeigetsuID {
             return Promise.resolve();
         });
     }
-    public async UpdateMailAddress(UpdateConfirmID, NewMailAddress: string): Promise<void> {
+    public async UpdateMailAddress(UpdateConfirmID: string, NewMailAddress: string): Promise<void> {
         return await fetch(APIRoot + '/user/' + UpdateConfirmID + '/mailaddress', {
             method: 'PATCH',
             headers: {
