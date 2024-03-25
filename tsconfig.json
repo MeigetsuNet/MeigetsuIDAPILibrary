@@ -8,10 +8,9 @@
         "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "strict": true,
         "outDir": "dist/main",
-        "module": "ESNext",
+        "module": "UMD",
         "moduleResolution": "Node",
         "esModuleInterop": true,
-        "resolveJsonModule": true,
         "allowJs": true,
         "declaration": true,
         "declarationDir": "dist/@types"
