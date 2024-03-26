@@ -93,7 +93,7 @@ export default class MeigetsuID {
             },
         };
     }
-    [Symbol.asyncDispose]() {
+    public async SignOut() {
         return fetch(`${APIRoot}/auth`, {
             method: 'DELETE',
             headers: {
