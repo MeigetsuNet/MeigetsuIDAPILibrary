@@ -6,6 +6,30 @@ APIの利用には、Meigetsu IDのクライアントIDとクライアントシ�
 
 これらは、Meigetsu IDに登録後、アプリケーションの登録を行うことで実施することができます。
 
+## インストール方法
+
+ライブラリは不具合修正やMeigetsu IDのアップデートに基づいて更新されるため、特段何か問題が無い限りは常に最新のものを使用して下さい。
+
+最新のバージョン番号は[こちら](https://library.meigetsu.jp/)でご確認下さい。
+
+### NPMを使用する場合
+
+下記コマンドを実行して下さい。
+
+なお、型データはライブラリに同梱されておりますので、別途インストールする必要はありません。
+
+```shell
+npm install meigetsuidlib --save
+```
+
+### HTMLのscriptタグを使って呼び出す場合
+
+下記をheadに追加して下さい。
+
+```html
+<script src="https://library.meigetsu.jp/meigetsuid/(バージョン番号)/index.js"></script>
+```
+
 ## アクセストークンの取得方法（リフレッシュトークンが無い場合）
 
 ### 1. GetAuthorizationIDで認可ＩＤを取得する
