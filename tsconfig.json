@@ -8,7 +8,7 @@
         "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "strict": true,
         "outDir": "dist/main",
-        "module": "UMD",
+        "module": "ES2022",
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "allowJs": true,
