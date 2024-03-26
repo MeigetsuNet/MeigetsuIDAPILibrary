@@ -143,4 +143,3 @@ prisma/migrations/
 ForTest/
 *.ts
 tsconfig*json
-*.js.map
