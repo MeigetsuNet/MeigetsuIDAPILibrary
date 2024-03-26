@@ -200,7 +200,7 @@ export default class MeigetsuID {
     }
     public async UpdateApplication(Data: ApplicationUpdate): Promise<ApplicationCreateResult | null> {
         return await fetch(APIRoot + '/application', {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${this.Token.access_token}`,
                 'Content-Type': 'application/json',
@@ -219,6 +219,7 @@ export default class MeigetsuID {
     public async GetApplication(ClientId?: string): Promise<ApplicationGet | ApplicationGetForEnum[]> {
         if (ClientId == null) {
             return await fetch(APIRoot + '/application', {
+                method: 'GET',
                 headers: {
                     Authorization: `Bearer ${this.Token.access_token}`,
                 },
