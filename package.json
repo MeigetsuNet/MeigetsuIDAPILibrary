@@ -1,6 +1,6 @@
 {
   "name": "meigetsuidlib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Meigetsu ID Request Wrapper Library",
   "type": "module",
   "main": "dist/main/index.js",
