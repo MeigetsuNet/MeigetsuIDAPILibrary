@@ -141,5 +141,4 @@ tests/
 docker-compose.yaml
 prisma/migrations/
 ForTest/
-*.ts
 tsconfig*json
