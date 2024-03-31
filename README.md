@@ -36,19 +36,33 @@ npm install meigetsuidlib --save
 
 > ### アプリケーションの種類がConfidentialの場合
 >
->```javascript
->import { GetAuthorizationID } from 'meigetsuidlib';
+> ```javascript
+> import { GetAuthorizationID } from 'meigetsuidlib';
 >
->const AuthorizationID = await GetAuthorizationID({ client_id: '<input your app client id>', client_secret: '<input your app client secret>', redirect_uri: '<input your app entried redirect uri>' }, [ 'user.read', 'user.write' ], '<input PKCE hashed value>', '<input PKCE hash method>');
->```
+> const AuthorizationID = await GetAuthorizationID(
+>     {
+>         client_id: '<input your app client id>',
+>         client_secret: '<input your app client secret>',
+>         redirect_uri: '<input your app entried redirect uri>',
+>     },
+>     ['user.read', 'user.write'],
+>     '<input PKCE hashed value>',
+>     '<input PKCE hash method>'
+> );
+> ```
 >
 > ### アプリケーションの種類がPublicの場合
 >
->```javascript
->import { GetAuthorizationID } from 'meigetsuidlib';
+> ```javascript
+> import { GetAuthorizationID } from 'meigetsuidlib';
 >
->const AuthorizationID = await GetAuthorizationID({ client_id: '<input your app client id>', redirect_uri: '<input your app entried redirect uri>' }, [ 'user.read', 'user.write' ], '<input PKCE hashed value>', '<input PKCE hash method>');
->```
+> const AuthorizationID = await GetAuthorizationID(
+>     { client_id: '<input your app client id>', redirect_uri: '<input your app entried redirect uri>' },
+>     ['user.read', 'user.write'],
+>     '<input PKCE hashed value>',
+>     '<input PKCE hash method>'
+> );
+> ```
 >
 > ### 認可コードの取得方法について
 >
@@ -59,13 +73,12 @@ npm install meigetsuidlib --save
 > ＵＲＬの生成については[こちら](https://idportal.meigetsu.jp/api/urlgen)で行うことができます。
 >
 > ### Scopeについて
->  
+>
 > `GetAuthorizationID`の第２引数は、scopeを配列で指定する形となっています。
 >
 > 指定可能なScopeについては[こちらのページ](https://idportal.meigetsu.jp/api/spec)のAuthorizeのボタンを押すとScopesのセクションをご確認下さい。
 >
 > なお、Scopeについてはアプリケーションの種類やデベロッパーのアカウント種別によって使えるものが異なります。
->
 
 ### 2. Meigetsu IDの認可ページへリダイレクトし、ユーザーに認可を要求する
 
@@ -80,7 +93,6 @@ npm install meigetsuidlib --save
 > ```
 >
 > ユーザーが認可すると、Meigetsu IDはクエリパラメーターとしてauth_code（認可コード）を付与し、事前に登録されたリダイレクトＵＲＬに自動的にリダイレクトします。
->
 
 ### 3. アクセストークンを取得する
 
