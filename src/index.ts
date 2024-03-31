@@ -255,13 +255,11 @@ export default class MeigetsuID {
             headers: {
                 Authorization: `Bearer ${this.Token.access_token}`,
             },
-        })
-            .then(response => {
-                if (response.status !== 200)
-                    return response.text().then(text => Promise.reject(new Error(`${response.status}: ${text}`)));
-                return response.json();
-            })
-            .then(json => json.result);
+        }).then(response => {
+            if (response.status !== 200)
+                return response.text().then(text => Promise.reject(new Error(`${response.status}: ${text}`)));
+            return response.json();
+        });
     }
     public async CheckAge(
         BorderAge: number,
@@ -271,18 +269,11 @@ export default class MeigetsuID {
             headers: {
                 Authorization: `Bearer ${this.Token.access_token}`,
             },
-        })
-            .then(response => {
-                if (response.status !== 200)
-                    return response.text().then(text => Promise.reject(new Error(`${response.status}: ${text}`)));
-                return response.json();
-            })
-            .then(json => {
-                return {
-                    result: json.result,
-                    level: json.level,
-                };
-            });
+        }).then(response => {
+            if (response.status !== 200)
+                return response.text().then(text => Promise.reject(new Error(`${response.status}: ${text}`)));
+            return response.json();
+        });
     }
 }
 
