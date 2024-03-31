@@ -250,7 +250,7 @@ export default class MeigetsuID {
     public async CheckIdentificationStatus(
         BorderLevel: number,
         CompareMode: 'equal' | 'not_equal' | 'greater' | 'greater_equal' | 'less' | 'less_equal'
-    ): Promise<boolean> {
+    ): Promise<{ result: boolean, exec_id: string, status: number }> {
         return await fetch(`${APIRoot}/user/mpim/status?level=${BorderLevel}&compare_mode=${CompareMode}`, {
             headers: {
                 Authorization: `Bearer ${this.Token.access_token}`,
@@ -264,7 +264,7 @@ export default class MeigetsuID {
     public async CheckAge(
         BorderAge: number,
         CompareMode: 'equal' | 'not_equal' | 'greater' | 'greater_equal' | 'less' | 'less_equal'
-    ): Promise<{ result: boolean; level: number }> {
+    ): Promise<{ result: { result: boolean, level: number }, exec_id: string, status: number }> {
         return await fetch(`${APIRoot}/user/mpim/age?age=${BorderAge}&compare_mode=${CompareMode}`, {
             headers: {
                 Authorization: `Bearer ${this.Token.access_token}`,
