@@ -13,17 +13,17 @@ export interface TokenInformation<ExpiresDataType> {
     };
 }
 
-export interface PersonalRecordBase {
+export interface PersonalRecordBase<DateType> {
     first_name: string;
     family_name: string;
     prefecture: string;
     city: string;
     address: string;
     gender: number;
-    birthday: Date;
+    birthday: DateType;
 }
 
-export interface PersonalRecord extends PersonalRecordBase {
+export interface PersonalRecord<DateType> extends PersonalRecordBase<DateType> {
     check_level: number;
 }
 
@@ -36,13 +36,13 @@ export interface UserUpdate extends Partial<UserBase> {
     password?: string;
 }
 
-export interface UserGet extends UserBase {
+export interface UserGet<DateType> extends UserBase {
     id: string;
     mailaddress: string;
     account_type: number;
-    created_at: Date;
+    created_at: DateType;
     personality_classification: number;
-    personal?: PersonalRecord;
+    personal?: PersonalRecord<DateType>;
 }
 
 export interface ApplicationBase {
@@ -104,7 +104,7 @@ export default class MeigetsuID {
                 return response.text().then(text => Promise.reject(`${response.status}: ${text}`));
         });
     }
-    public async GetUserRecord(ContainPersonal: boolean = false): Promise<UserGet> {
+    public async GetUserRecord(ContainPersonal: boolean = false): Promise<UserGet<Date>> {
         return await fetch(`${APIRoot}/user?contain_personal=${ContainPersonal}`, {
             method: 'GET',
             headers: {
@@ -114,6 +114,26 @@ export default class MeigetsuID {
             if (response.status !== 200)
                 return response.text().then(text => Promise.reject(`${response.status}: ${text}`));
             return response.json();
+        }).then((record: UserGet<string>) => {
+            return {
+                id: record.id,
+                user_id: record.user_id,
+                name: record.name,
+                mailaddress: record.mailaddress,
+                account_type: record.account_type,
+                created_at: new Date(record.created_at),
+                personality_classification: record.personality_classification,
+                personal: record.personal ? {
+                    first_name: record.personal.first_name,
+                    family_name: record.personal.family_name,
+                    prefecture: record.personal.prefecture,
+                    city: record.personal.city,
+                    address: record.personal.address,
+                    gender: record.personal.gender,
+                    birthday: new Date(record.personal.birthday),
+                    check_level: record.personal.check_level,
+                } : undefined,
+            };
         });
     }
     public async RequestConfirmMailForUpdate(): Promise<void> {
@@ -168,7 +188,7 @@ export default class MeigetsuID {
             return Promise.resolve();
         });
     }
-    public async UpdatePersonalRecord(UpdateConfirmID: string, NewRecord: Partial<PersonalRecordBase>): Promise<void> {
+    public async UpdatePersonalRecord(UpdateConfirmID: string, NewRecord: Partial<PersonalRecordBase<Date>>): Promise<void> {
         return await fetch(APIRoot + '/user/mpim/' + UpdateConfirmID, {
             method: 'PATCH',
             headers: {
