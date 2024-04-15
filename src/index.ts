@@ -5,6 +5,7 @@ export interface ClientInformation {
 }
 
 export interface TokenInformation<ExpiresDataType> {
+    token_type: string;
     access_token: string;
     refresh_token: string;
     expires_at: {
@@ -85,6 +86,7 @@ export default class MeigetsuID {
     private Token: TokenInformation<Date>;
     constructor(TokenInfo: TokenInformation<string>) {
         this.Token = {
+            token_type: TokenInfo.token_type,
             access_token: TokenInfo.access_token,
             refresh_token: TokenInfo.refresh_token,
             expires_at: {
