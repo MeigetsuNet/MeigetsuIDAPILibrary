@@ -7,9 +7,11 @@ export interface ClientInformation {
 export interface TokenInformation<ExpiresDataType> {
     token_type: string;
     access_token: string;
+    id_token?: string;
     refresh_token: string;
     expires_at: {
         access_token: ExpiresDataType;
+        id_token?: ExpiresDataType;
         refresh_token: ExpiresDataType;
     };
 }
@@ -88,9 +90,11 @@ export default class MeigetsuID {
         this.Token = {
             token_type: TokenInfo.token_type,
             access_token: TokenInfo.access_token,
+            id_token: TokenInfo.id_token,
             refresh_token: TokenInfo.refresh_token,
             expires_at: {
                 access_token: new Date(TokenInfo.expires_at.access_token),
+                id_token: TokenInfo.expires_at.id_token ? new Date(TokenInfo.expires_at.id_token) : undefined, 
                 refresh_token: new Date(TokenInfo.expires_at.refresh_token),
             },
         };
